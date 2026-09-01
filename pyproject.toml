@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bbplugin-sample-build"
+version = "0.1.0"
+description = "Sample bblocks build (postprocessing lifecycle) plugin exercising every hook"
+requires-python = ">=3.10"
+dependencies = []
