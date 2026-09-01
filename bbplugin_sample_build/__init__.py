@@ -1,9 +1,9 @@
 """
 Sample bblocks build (postprocessing lifecycle) plugin.
 
-SampleBuildHooks implements every event in the build-plugin contract
-(docs/build-lifecycle-hooks.md in bblocks-postprocess-action) purely to
-demonstrate the mechanism end to end:
+SampleBuildHooks implements every event in the build-plugin contract exposed by
+bblocks-postprocess-action's `plugins.build` mechanism, purely to demonstrate the
+mechanism end to end:
 
   - before_run / after_uplift / after_run / on_error: log what they see -
     pure observers, no return value.
@@ -14,8 +14,8 @@ demonstrate the mechanism end to end:
     'x-sampleBuildPlugin' extension field on the top-level register and on
     every bblock entry, recording when this plugin ran and how many bblocks
     it saw. This is the mechanism to use for rewriting register.json / a
-    bblock's published metadata from a build plugin - see the design doc's
-    "Proposed events" section.
+    bblock's published metadata from a build plugin - it is the only event
+    whose return value feeds back into the pipeline.
 
 Declare in bblocks-config.yaml:
 

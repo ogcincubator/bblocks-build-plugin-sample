@@ -1,7 +1,7 @@
 # bblocks-build-plugin-sample
 
-A sample [build (postprocessing lifecycle) plugin](https://github.com/opengeospatial/bblocks-postprocess-action/blob/develop/docs/build-lifecycle-hooks.md)
-for [bblocks-postprocess-action](https://github.com/opengeospatial/bblocks-postprocess-action).
+A sample build (postprocessing lifecycle) plugin for
+[bblocks-postprocess-action](https://github.com/opengeospatial/bblocks-postprocess-action).
 
 `bbplugin_sample_build.SampleBuildHooks` implements every event in the
 contract — `before_run`, `before_bblock`/`after_bblock` (all five per-bblock
