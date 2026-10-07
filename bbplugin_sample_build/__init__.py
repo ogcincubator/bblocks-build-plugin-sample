@@ -21,15 +21,29 @@ Declare in bblocks-config.yaml:
 
     plugins:
       build:
-        - classes: [bbplugin_sample_build.SampleBuildHooks]
+        - id: sample                # optional; reaches the plugin as context['pluginId']
+          classes: [bbplugin_sample_build.SampleBuildHooks]
           pip: git+https://github.com/ogcincubator/bblocks-build-plugin-sample.git
+          config:                   # optional; passed to the constructor as a dict
+            greeting: hello
+
+`config` (a JSON-serializable mapping) is handed to the constructor as a single
+positional dict - this sample just prints it - and every event's `context` carries
+`rootDir` (the directory the run's other paths are relative to) and `pluginId`.
 """
 from datetime import datetime, timezone
 
 
 class SampleBuildHooks:
 
+    def __init__(self, config=None):
+        # Only called with an argument when the declaring entry has a non-empty
+        # `config`; with none, the postprocessor calls SampleBuildHooks().
+        self.config = config or {}
+
     def before_run(self, register, context):
+        print(f"[sample-build] before_run: pluginId={context.get('pluginId')} "
+              f"rootDir={context.get('rootDir')} config={self.config!r}")
         print(f"[sample-build] before_run: {len(register.get('bblocks', []))} bblock(s) queued, "
               f"steps={context.get('steps')}")
 
